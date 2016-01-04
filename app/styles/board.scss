@@ -1,0 +1,325 @@
+$line-height: 1.5rem !default;
+$column-width: 1rem !default;
+
+$widget-width: 22.5rem;
+$widget-height: 10rem;
+
+$min-board-margin: 1rem;
+$board-space: .125rem;
+
+$page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height * 7; // 2 widgets + header
+
+.box.page > header {
+  padding-bottom: $page-header-overlap + $line-height*2;
+}
+
+.board.goal-list {
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: flex-start;
+  align-items: stretch;
+  justify-content: center;
+
+  margin: $line-height $min-board-margin;
+  margin-top: -$page-header-overlap;
+  padding: $board-space 0 0 $board-space;
+
+  > * {
+    margin: 0 $board-space $board-space 0;
+  }
+
+  > header {
+    flex: 1 1 100%;
+    color: white;
+    margin: 0;
+
+    > .row {
+      margin: 0 0 $line-height;
+      justify-content: space-between;
+
+      &.justify-end {
+        justify-content: flex-end;
+      }
+    }
+
+    .history {
+      height: 4.5rem;
+    }
+
+
+  }
+
+  &:after { // Stub for list line
+    content: '';
+    display: flex;
+    flex: 1 1 0;
+  }
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.flex-splitter {
+  flex: 1 1 0;
+}
+
+.barplot {
+  display: none;
+  flex-flow: row nowrap;
+  align-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1 1 auto;
+  padding: 0 2rem;
+
+  @media (min-width: 25rem) {
+    display: flex;
+  }
+
+  > .plot-bar {
+    margin: 0 .25rem;
+    background-color: transparentize(white, 0.8);
+    flex: 0 1 1rem;
+    min-width: .25rem;
+    border-radius: 2px 2px 0 0;
+
+    &.active {
+      background-color: #ffc907;
+      border: 1px solid transparentize(white, 0.7);
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+.row.tools {
+  min-height: 3rem;
+  align-items: center;
+  align-content: center;
+}
+
+.dial {
+  font-size: 1.5rem !important;
+  font-family: 'Roboto Condensed', Impact, Arial, sans-serif !important;
+  font-weight: 300 !important;
+  color: white !important;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: stretch;
+  align-items: stretch;
+  padding: 0 1rem;
+}
+
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.column.date {
+  align-items: center;
+  align-content: center;
+  flex: 0 0 auto;
+  padding: 0 2rem;
+  position: relative;
+
+  .prev-day, .next-day {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1.5rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity .3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .prev-day {
+    left: 0;
+  }
+
+  .next-day {
+    right: 0;
+  }
+
+  .weekday, .month {
+    font-size: 0.875rem;
+    line-height: 1em;
+  }
+
+  .weekday {
+    padding-bottom: 0.625rem;
+  }
+
+  .month {
+    padding-top: 0.625rem;
+  }
+
+  .day {
+    font-family: "Roboto Condensed", "Open Sans Condensed", "Helvetica Condensed", "Arial Narrow", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1em;
+    transform: scaleY(1.125);
+  }
+}
+
+.column.statistics {
+  flex: 0 0 auto;
+}
+
+/* Row layout */
+.box.goal {
+  display: inline-flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  background: white;
+
+  padding: calc(.75rem - #{$board-space / 2}) calc(1rem - #{$board-space / 2});
+  border-radius: 1px;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  height: $line-height * 4 - $board-space;
+
+  > .main {
+    font-size: 1rem;
+    line-height: $line-height;
+  }
+
+  > .secondary {
+    font-size: .875rem;
+    line-height: $line-height;
+    opacity: 0.6;
+
+    display: flex;
+
+    > * {
+      margin-right: 1rem;
+    }
+  }
+
+  > .goal-progress {
+    margin: 1.125rem 0 0;
+    flex: 0 0 0.375rem;
+    background-color: transparentize(#000, 0.95);
+    position: relative;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+
+      border-radius: 0 2px 2px 0;
+    }
+
+    &:before {
+      bottom: 0;
+      height: .25rem;
+      width: 70%;
+      background: transparentize(#00B5EC, 0.2);
+    }
+
+    &:after{
+      top: 0;
+      height: .125rem;
+      width: 45%;
+      background: transparentize(red, 0.5);
+    }
+  }
+}
+
+/******************
+  For wide screens - make cards instead rows
+*******************/
+
+@function board-width($cols, $width, $margin) {
+  // returns board width for given element width and margin and columns
+  @return $cols * ($width + $margin) + $margin;
+}
+
+@mixin goal-board($elem-width, $min-cols, $max-cols) {
+  // Generate media quries for board with given columns
+  @for $i from $min-cols to ($max-cols + 1) {
+    $max-width: board-width($i, $elem-width, $board-space);
+    $screen-width: $max-width + $min-board-margin * 2;
+    @media (min-width: $screen-width) {
+      max-width: $max-width;
+    }
+  }
+}
+
+$max-width: board-width(2, $widget-width, $board-space);
+$screen-width: $max-width + $min-board-margin * 2;
+
+@media (min-width: $screen-width) {
+  $page-header-overlap: ($widget-height + $board-space + $board-space / 2) + 7 * $line-height; // one widgets row + header
+
+  .box.page > header {
+    padding-bottom: $page-header-overlap + $line-height*2;
+  }
+
+  .board.goal-list {
+    flex-flow: row wrap;
+    margin: -$page-header-overlap auto $line-height;
+  }
+
+  .box.goal {
+    flex: 0 0 $widget-width;
+    height: $widget-height;
+
+    > .secondary {
+      display: flex;
+      flex-flow: row wrap;
+
+      > * {
+        white-space: nowrap;
+      }
+
+      .value.date-from,
+      .value.date-to {
+        flex: 0 0 auto;
+      }
+
+      .value.date-from {
+        margin-right: .5rem;
+
+        &:after {
+          content: '\2014';
+          margin-left: .5rem;
+        }
+      }
+
+      .tags {
+        flex: 1 1 100%;
+      }
+    }
+
+    .goal-progress{
+      // border: transparentize(#00B5EC, 0.7) 0.5rem solid;
+      // border: transparentize(#000, 0.95) 0.5rem solid;
+      // flex: 0 0 4.5rem;
+      // width: 4.5rem;
+      // height: 4.5rem;
+      // border-radius: 50%;
+    }
+  }
+}
+
+.board.goal-list {
+  @include goal-board($widget-width, 2, 4);
+}

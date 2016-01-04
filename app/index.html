@@ -17,7 +17,7 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -26,44 +26,300 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">goals</h3>
+
+    <section class="box page">
+      <div class="for-coursera-peers-button" data-toggle="modal" data-target="#courseraPeersModal">
+        for coursera peers
       </div>
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
+      <nav class="navbar">
+        <div class="container-fluid">
+          <a class="brand" href="#">
+            <div class="logo logo-goal-tracker"></div>
+            <span class="name">Goal tracker</span>
+          </a>
+          <div class="navbar-header">
+            <div class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#main_navbar"
+              aria-expanded="false">
+              <div class="hamburger-button white">
+                <div class="lines"></div>
+              </div>
+            </div>
+          </div>
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-          
-          <h4>Sass</h4>
-          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-          
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-          <h4>Modernizr</h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          
+          <div class="collapse navbar-collapse pull-right" id="main_navbar">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Ideas</a></li>
+              <li class="active"><a href="#">Goals</a></li>
+              <li><a href="#">Tasks</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <header>
+        <h1>Achieve Your Goals</h1>
+        <h4>Set the goal. Take the action. Track the progress.</h4>
+      </header>
+
+      <main class="board goal-list">
+        <header>
+          <div class="row">
+            <div class="column date">
+              <div class="prev-day">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              </div>
+              <span class="weekday">Sunday</span>
+              <span class="day">3</span>
+              <span class="month">Jan, 2016</span>
+              <div class="next-day">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+              </div>
+            </div>
+            <div class="history barplot"></div>
+            <div class="column statistics">
+              <input type="text" value="42" class="dial" data-readOnly=true data-width="72" data-height="72" data-thickness=".2" data-linecap=round>
+            </div>
+          </div>
+          <div class="row tools justify-end">
+            <button class="btn btn-warning">Add goal</button>
+          </div>
+        </header>
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+
+        <acticle class="box goal">
+          <div class="main">
+            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
+          </div>
+          <div class="secondary">
+            <div class="value date-from">02.01.2016</div>
+            <div class="value date-to">12.01.2016</div>
+            <div class="tags">
+              <span class="tag">Delevopment</span>
+              <span class="tag">Study</span>
+              <span class="tag">Coursera</span>
+            </div>
+          </div>
+          <div class="goal-progress"></div>
+        </acticle>
+        
+      </main>
+
+      <footer></footer>
+    </section>
+
+    <div class="modal fade" id="courseraPeersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Notes for peers of Coursera</h4>
+            <h3 class="modal-title">"Responsive Website Basics: Code with HTML, CSS, and JavaScript"</h3>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info" role="alert">
+              Here's a list of the features carried out in accordance with the assignment requirements
+            </div>
+            <ul class="media-list">
+              <li class="media">
+                  <h5 class="media-heading">It should display correctly if the person viewing it has placed all the files you have supplied in a folder on their machine</h5>
+                  <div class="note">
+                    <p><strong>My comment:</strong>
+                    I hope it works on your PC in your browser. This page was tested with latest versions Chrome, Firefox, Edge. Other browsers and versions were not tested. </p>
+                    <p><em>If this page doesn't work in your browser, please, add browser name and version to your feedback. It will be very helpful.</em></p>
+                  </div>
+              </li>
+              <li class="media">
+                  <h5 class="media-heading">It should use at least one of each of HTML img, h1 and div tags (and more if needed)</h5>
+                  <div class="note">
+                    <strong>My comment:</strong>
+                    <ul>
+                      <li><strong>img:</strong> no images here, I could not find enough suitable (so, <span class="label label-danger">-1</span>)</li>
+                      <li><strong>h1:</strong> page header, largest test in h1-element</li>
+                      <li><strong>div:</strong> here are a lot of such elements</li>
+                    </ul>
+                  </div>
+              </li>
+              <li class="media">
+                  <h5 class="media-heading">It should use CSS to set the style of the text and other parts of the design as appropriate, in at least 3 ways.</h5>
+                  <div class="note">
+                    <strong>My comment:</strong> here's many styles (almost all page, except additional elements: modals, tooltips, circular progress bar etc. - for those I used bootstrap and jquery knob).
+                    <p>But, I used Sass and gulp to build final css file, so it little ugly formatted. Visit github repository to view source.</p>
+                  </div>
+              </li>
+              <li class="media">
+                  <h5 class="media-heading">It should be responsive - it should change the layout if the screen size changes</h5>
+                  <div class="note">
+                    <strong>My comment:</strong>
+                    <ul>
+                      <li><strong>Navigation bar:</strong> collapsed on small devices (using bootstrap)</li>
+                      <li><strong>Day statistics:</strong> history plot is hidden on small devices</li>
+                      <li><strong>Goal widget:</strong> as full width row on small devices and as card on tables and desktops</li>
+                    </ul>
+                  </div>
+              </li>
+              <li class="media">
+                  <h5 class="media-heading">The user should be able to change the page in some way by interacting with a GUI element such as a button.</h5>
+                  <div class="note">
+                    <strong>My comment:</strong>
+                  </div>
+              </li>
+            </ul>
+            <div class="alert alert-warning" role="alert">
+              <strong>Attention!</strong> Do not trust strangers !! :)
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
-
-      <div class="footer">
-        <p>♥ from the Yeoman team</p>
-      </div>
     </div>
-    
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -79,7 +335,7 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
@@ -94,9 +350,21 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <script src="/bower_components/jquery-knob/js/jquery.knob.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script>
+      $(function() {
+        $(".dial").knob();
+      });
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
   </body>
 </html>

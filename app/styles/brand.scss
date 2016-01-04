@@ -1,0 +1,115 @@
+/* App brand icon styles */
+$secondary-opacity: 0.8 !default;
+
+.brand {
+  color: white;
+  font-size: 1rem;
+  line-height: 3rem;
+  vertical-align: middle;
+  text-transform: lowercase;
+  opacity: $secondary-opacity;
+  text-decoration: none;
+  outline: none;
+
+  transition: opacity .3s ease;
+
+  &:hover, &:active, &:focus {
+    opacity: 1;
+    color: white;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+/* Aim icon */
+$logo-line-width: .125rem;
+$logo-min-square-size: 3*$logo-line-width;
+$logo-space-width: .3125rem;
+$logo-color: transparentize(white, 0.2);
+
+@function get-aim-circle-size($lvl) {
+  @return $logo-min-square-size + ($lvl - 1) * ($logo-line-width + $logo-space-width) * 2;
+}
+
+@mixin aim-circle($lvl) {
+  height: get-aim-circle-size($lvl);
+  width: get-aim-circle-size($lvl);
+}
+
+%logo {
+  display: inline-block;
+  position: relative;
+  z-index: 1000;
+  margin: 0 get-aim-circle-size(3)/2 0;
+}
+
+%aim-icon {
+  background-color: $logo-color;
+  @include aim-circle(1);
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: $logo-line-width solid $logo-color;
+  }
+
+  &, &:before, &:after { border-radius: 50%; }
+
+  &:before { @include aim-circle(2); }
+  &:after { @include aim-circle(3); }
+}
+
+.logo-goal-tracker {
+  @extend %logo;
+  @extend %aim-icon;
+
+  &:after, &::before {
+    transition: transform 1s ease, opacity .5s ease .25s;
+  }
+
+  &:after { transition-delay: .5s; }
+
+  .brand:hover > &, &:hover {
+    &::after, &::before {
+      transform: translate(-50%, -50%) scale(5);
+      opacity: 0;
+      transition: transform 1s ease, opacity .5s ease;
+    }
+
+    &::before { transition-delay: .5s; }
+  }
+}
+
+/* Radar icon */
+
+.radar {
+  @extend %logo;
+  @extend %aim-icon;
+
+  .brand:hover > &, &:hover {
+    &:after, &:before { animation: radar 1s infinite; }
+    &:before { animation-delay: .5s; }
+  }
+}
+
+@keyframes radar {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+  76% {
+    transform: translate(-50%, -50%) scale(.1);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
