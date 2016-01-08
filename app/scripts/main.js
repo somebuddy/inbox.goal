@@ -1,9 +1,14 @@
 /*global $:false, moment:false */
+
 'use strict';
 
 $(function () {
   (function () {
     // Prepare history of day statistics (random)
+
+    var currentDay = new Date();
+    var activeDate = moment(currentDay);
+
     function getRandomStatistics (days) {
       var result = [];
       for (var i = days; i >= 0; i--) {
@@ -14,6 +19,10 @@ $(function () {
       }
       return result;
     }
+
+    var statistics = getRandomStatistics(10);
+
+    var barClickHandler;
 
     function buildPlot() {
       // creating the history plot
@@ -32,11 +41,7 @@ $(function () {
         }
 
         $(el).tooltip();
-        $(el).click(function (ev) {
-          var d = $(ev.currentTarget).attr('data-date');
-          activeDate = moment(new Date(d));
-          updateStatisticsBoard();
-        });
+        $(el).click(barClickHandler);
         $('.history.barplot' ).append(el);
       }
     }
@@ -62,14 +67,17 @@ $(function () {
       buildDateElement();
     }
 
+    barClickHandler = function (ev) {
+      var d = $(ev.currentTarget).attr('data-date');
+      activeDate = moment(new Date(d));
+      updateStatisticsBoard();
+    };
+
     function shiftDay (shift) {
       activeDate.add(shift, 'days');
       updateStatisticsBoard();
     }
 
-    var statistics = getRandomStatistics(10);
-    var currentDay = new Date();
-    var activeDate = moment(currentDay);
     shiftDay(0);
 
     $('.goal-list .column.date .prev-day').click(function () { shiftDay(-1); });
@@ -95,7 +103,7 @@ $(function () {
     function getTags() {
       var n = randInt(2) + 1;
       var t = [];
-      for (var i=0; i < n; i++) {
+      for (var i = 0; i < n; i++) {
         t.push(sample(tags));
       }
       return t;
@@ -109,22 +117,22 @@ $(function () {
       var dateFrom = moment(new Date());
       var dateTo = moment(new Date());
       dateFrom.subtract(7);
-      dateTo.add(7)
+      dateTo.add(7);
       var goal = {
         title: sample(verb) + ' ' + sample(adj) + ' ' + sample(noun),
         dateFrom: moment(new Date()).subtract(randInt(30), 'days'),
         dateTo: moment(new Date()).add(randInt(30), 'days'),
         tags: getTags()
-      }
+      };
       calcGoalStat(goal);
       goal.valueProgress = randInt(100);
       return goal;
     }
 
-    function buildTagsElem(tags) {
+    function buildTagsElem(lst) {
       var el = $('<div class="tags"></div>');
-      for (var t in tags) {
-        var tag = $('<div class="tag"></div>').html(tags[t]);
+      for (var t in lst) {
+        var tag = $('<div class="tag"></div>').html(lst[t]);
         el.append(tag);
       }
       return el;
@@ -158,29 +166,30 @@ $(function () {
       dateFrom: moment('21.12.2015', 'DD.MM.YYYY'),
       dateTo: moment('25.01.2016', 'DD.MM.YYYY'),
       tags: ['Delevopment', 'Study', 'Coursera'],
-      valueProgress: 5/6 * 100
+      valueProgress: 5 / 6 * 100
     }, {
       title: 'Coursera: Responsive Web Design',
       dateFrom: moment('28.12.2015', 'DD.MM.YYYY'),
       dateTo: moment('01.02.2016', 'DD.MM.YYYY'),
       tags: ['Delevopment', 'Study', 'Coursera'],
-      valueProgress: 4/6 * 100
+      valueProgress: 4 / 6 * 100
     }, {
       title: 'Coursera: Introduction to Meteor.js Development',
       dateFrom: moment('14.12.2015', 'DD.MM.YYYY'),
       dateTo: moment('18.01.2016', 'DD.MM.YYYY'),
       tags: ['Delevopment', 'Study', 'Coursera'],
-      valueProgress: 5/6 * 100
+      valueProgress: 5 / 6 * 100
     }, {
       title: 'Web Application Development with JavaScript and MongoDB',
       dateFrom: moment('04.01.2016', 'DD.MM.YYYY'),
       dateTo: moment('08.02.2016', 'DD.MM.YYYY'),
       tags: ['Delevopment', 'Study', 'Coursera'],
-      valueProgress: 1/6 * 100
+      valueProgress: 1 / 6 * 100
     }];
 
+    goals.push(getRandomGoal()); // add some random goal
+
     for (var g in goals) {
-      console.log(goals[g]);
       calcGoalStat(goals[g]);
       buildGoalWidget(goals[g]);
     }
