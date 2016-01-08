@@ -2,10 +2,10 @@
   "name": "goals",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.1",
     "jquery-knob": "~1.2.13",
-    "moment": "~2.11.0"
+    "moment": "~2.11.0",
+    "bootstrap-css": "~3.3.4"
   },
   "overrides": {
     "bootstrap-sass": {

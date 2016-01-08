@@ -199,17 +199,38 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
   > .main {
     font-size: 1rem;
     line-height: $line-height;
+    min-height: 1.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   > .secondary {
     font-size: .875rem;
     line-height: $line-height;
+    white-space: nowrap;
+    min-height: 1.5rem;
     opacity: 0.6;
-
     display: flex;
+    overflow: hidden;
 
     > * {
       margin-right: 1rem;
+      white-space: nowrap;
+    }
+
+    .value.date-from,
+    .value.date-to {
+      flex: 0 0 auto;
+    }
+
+    .value.date-from {
+      margin-right: .5rem;
+
+      &:after {
+        content: '\2014';
+        margin-left: .5rem;
+      }
     }
   }
 
@@ -219,7 +240,7 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
     background-color: transparentize(#000, 0.95);
     position: relative;
 
-    &:before, &:after {
+    > .line {
       content: '';
       position: absolute;
       left: 0;
@@ -227,14 +248,14 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
       border-radius: 0 2px 2px 0;
     }
 
-    &:before {
+    > .line.value {
       bottom: 0;
       height: .25rem;
       width: 70%;
       background: transparentize(#00B5EC, 0.2);
     }
 
-    &:after{
+    > .line.time {
       top: 0;
       height: .125rem;
       width: 45%;
@@ -282,27 +303,14 @@ $screen-width: $max-width + $min-board-margin * 2;
     flex: 0 0 $widget-width;
     height: $widget-height;
 
+    > .main {
+      max-height: $line-height*2;
+      white-space: normal;
+    }
+
     > .secondary {
       display: flex;
       flex-flow: row wrap;
-
-      > * {
-        white-space: nowrap;
-      }
-
-      .value.date-from,
-      .value.date-to {
-        flex: 0 0 auto;
-      }
-
-      .value.date-from {
-        margin-right: .5rem;
-
-        &:after {
-          content: '\2014';
-          margin-left: .5rem;
-        }
-      }
 
       .tags {
         flex: 1 1 100%;

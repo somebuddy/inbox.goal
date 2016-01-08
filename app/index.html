@@ -10,8 +10,14 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- build:css styles/vendor.css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-css/bootstrap.css">
     <!-- bower:css -->
     <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/bootstrap.css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-css/css/bootstrap.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap-css/css/bootstrap-theme.css">
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
@@ -68,13 +74,13 @@
         <header>
           <div class="row">
             <div class="column date">
-              <div class="prev-day">
+              <div class="prev-day" data-toggle="tooltip" title="Previous day">
                 <i class="glyphicon glyphicon-chevron-left"></i>
               </div>
               <span class="weekday">Sunday</span>
               <span class="day">3</span>
               <span class="month">Jan, 2016</span>
-              <div class="next-day">
+              <div class="next-day" data-toggle="tooltip" title="Next day">
                 <i class="glyphicon glyphicon-chevron-right"></i>
               </div>
             </div>
@@ -84,169 +90,11 @@
             </div>
           </div>
           <div class="row tools justify-end">
-            <button class="btn btn-warning">Add goal</button>
+            <button class="btn btn-warning add-goal-button"
+              data-toggle="popover" data-trigger="hover" data-placement="bottom"
+              title="Set new goal" data-content="It isn't working yet: just add random goal for prototype page :(">Add goal</button>
           </div>
         </header>
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-
-        <acticle class="box goal">
-          <div class="main">
-            Coursera: Responsive Website Basics: Code with HTML, CSS, and JavaScript
-          </div>
-          <div class="secondary">
-            <div class="value date-from">02.01.2016</div>
-            <div class="value date-to">12.01.2016</div>
-            <div class="tags">
-              <span class="tag">Delevopment</span>
-              <span class="tag">Study</span>
-              <span class="tag">Coursera</span>
-            </div>
-          </div>
-          <div class="goal-progress"></div>
-        </acticle>
-        
       </main>
 
       <footer></footer>
@@ -337,33 +185,21 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/plugins.js -->
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="/bower_components/bootstrap-css/js/bootstrap.js"></script>
+    <script src="/bower_components/jquery-knob/js/jquery.knob.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 
-    <script src="/bower_components/jquery-knob/js/jquery.knob.js"></script>
-    <script src="/bower_components/moment/moment.js"></script>
-    <script>
-      $(function() {
-        $(".dial").knob();
-      });
 
+    <script>
       $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        $(".dial").knob();
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
       })
     </script>
   </body>
