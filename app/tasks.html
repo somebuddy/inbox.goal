@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>goals</title>
+    <title>Tasks</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -32,18 +32,18 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <section class="box page goals">
+    <section class="box page tasks">
       <div class="box button for-coursera-peers-button"
         data-toggle="modal" data-target="#courseraPeersModal"
-        data-remote="coursera-notes\responsive-web-basics.html">
+        data-remote="coursera-notes\responsive-web.html">
         for coursera peers
       </div>
 
       <nav class="navbar">
         <div class="container-fluid">
           <a class="brand" href="#">
-            <div class="logo logo-goal-tracker"></div>
-            <span class="name">Goal tracker</span>
+            <div class="logo logo-tasks"></div>
+            <span class="name">Tasks</span>
           </a>
           <div class="navbar-header">
             <div class="navbar-toggle collapsed"
@@ -59,20 +59,21 @@
           <div class="collapse navbar-collapse pull-right" id="main_navbar">
             <ul class="nav navbar-nav">
               <li><a href="#">Ideas</a></li>
-              <li class="active"><a href="#">Goals</a></li>
-              <li><a href="tasks.html">Tasks</a></li>
-              <li><a href="https://github.com/somebuddy/inbox.goal/tree/rwb" target="_blank"><img src="images/github.png"></a></li>
+              <li><a href="/">Goals</a></li>
+              <li class="active"><a href="#">Tasks</a></li>
+              <li><a href="https://github.com/somebuddy/inbox.goal/tree/resp-web" target="_blank"><img src="images/github.png"></a></li>
             </ul>
           </div>
         </div>
       </nav>
 
-      <header>
-        <h1>Achieve Your Goals</h1>
-        <h4>Set the goal. Take the action. Track the progress.</h4>
+      <header class="text-center">
+        <h1>Manage activities</h1>
+        <h4>Add task. Work on it. Mark as done.</h4>
+        <div class="box button">Read more...</div>
       </header>
 
-      <main class="board goal-list">
+      <main class="board task-list">
         <header>
           <div class="row">
             <div class="date-widget">
@@ -92,13 +93,12 @@
             </div>
           </div>
           <div class="row tools justify-end">
-            <button class="btn btn-warning add-goal-button"
+            <button class="btn btn-warning add-task-button"
               data-toggle="popover" data-trigger="hover" data-placement="bottom"
-              title="Set new goal" data-content="It isn't working yet: just add random goal for prototype page :(">Add goal</button>
+              title="Add new task" data-content="It isn't working yet: just add random task for prototype page :(">New task</button>
           </div>
         </header>
       </main>
-
       <footer></footer>
     </section>
 
@@ -132,7 +132,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/statistics.board.js"></script>
-    <script src="scripts/goals.js"></script>
+    <script src="scripts/tasks.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 

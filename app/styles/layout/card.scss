@@ -1,0 +1,49 @@
+@mixin card {
+  display: inline-flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+
+  border-radius: 1px;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  > .main {
+    font-size: 1rem;
+    line-height: $line-height;
+    min-height: 1.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  > .secondary {
+    font-size: .875rem;
+    line-height: $line-height;
+    white-space: nowrap;
+    min-height: 1.5rem;
+    opacity: 0.6;
+    display: flex;
+    overflow: hidden;
+
+    > * {
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+
+    .value.date-from,
+    .value.date-to {
+      flex: 0 0 auto;
+    }
+
+    .value.date-from {
+      margin-right: .5rem;
+
+      &:after {
+        content: '\2014';
+        margin-left: .5rem;
+      }
+    }
+  }
+}

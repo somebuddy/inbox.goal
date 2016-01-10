@@ -104,3 +104,18 @@ $nav-height: 4.5rem;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
 }
+
+.box.page.goals > nav {
+  &, & .navbar-collapse {
+    background-color: #00B5EC;
+    color: white;
+  }
+}
+
+.box.page.tasks > nav {
+  &, & .navbar-collapse {
+    background-color: #FFA000;
+    background-color: #404D5E;
+    color: white;
+  }
+}

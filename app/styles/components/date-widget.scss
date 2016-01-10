@@ -1,0 +1,57 @@
+@import 'layout/column';
+
+.date-widget {
+  @include column;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  flex: 0 0 auto;
+  padding: 0 2rem;
+
+  .prev-day, .next-day {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1.5rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity .3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .prev-day {
+    left: 0;
+  }
+
+  .next-day {
+    right: 0;
+  }
+
+  .weekday, .month {
+    font-size: 0.875rem;
+    line-height: 1em;
+  }
+
+  .weekday {
+    padding-bottom: 0.625rem;
+  }
+
+  .month {
+    padding-top: 0.625rem;
+  }
+
+  .day {
+    font-family: "Roboto Condensed", "Open Sans Condensed", "Helvetica Condensed", "Arial Narrow", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1em;
+    transform: scaleY(1.125);
+  }
+}

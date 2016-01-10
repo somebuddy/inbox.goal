@@ -1,3 +1,5 @@
+@import 'layout/card';
+
 $line-height: 1.5rem !default;
 $column-width: 1rem !default;
 
@@ -13,7 +15,7 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
   padding-bottom: $page-header-overlap + $line-height*2;
 }
 
-.board.goal-list {
+.board {
   display: flex;
   flex-flow: column nowrap;
   align-content: flex-start;
@@ -24,13 +26,18 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
   margin-top: -$page-header-overlap;
   padding: $board-space 0 0 $board-space;
 
-  > * {
+  .box {
+    @include card;
     margin: 0 $board-space $board-space 0;
+    background: white;
+
+    padding: calc(.75rem - #{$board-space / 2}) calc(1rem - #{$board-space / 2});
+
+    height: $line-height * 4 - $board-space;
   }
 
   > header {
     flex: 1 1 100%;
-    color: white;
     margin: 0;
 
     > .row {
@@ -41,20 +48,101 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
         justify-content: flex-end;
       }
     }
+  }
+}
+
+@function board-width($cols, $width, $margin) {
+  // returns board width for given element width and margin and columns
+  @return $cols * ($width + $margin) + $margin;
+}
+
+@mixin goal-board($elem-width, $min-cols, $max-cols) {
+  // Generate media quries for board with given columns
+  @for $i from $min-cols to ($max-cols + 1) {
+    $max-width: board-width($i, $elem-width, $board-space);
+    $screen-width: $max-width + $min-board-margin * 2;
+    @media (min-width: $screen-width) {
+      max-width: $max-width;
+    }
+  }
+}
+
+$max-width: board-width(2, $widget-width, $board-space);
+$screen-width: $max-width + $min-board-margin * 2;
+
+.board {
+  @include goal-board($widget-width, 2, 4);
+}
+
+@media (min-width: $screen-width) {
+  $page-header-overlap: ($widget-height + $board-space + $board-space / 2) + 7 * $line-height; // one widgets row + header
+
+  .box.page > header {
+    padding-bottom: $page-header-overlap + $line-height*2;
+  }
+
+  .board {
+    flex-flow: row wrap;
+    margin: -$page-header-overlap auto $line-height;
+
+    .box {
+      flex: 0 0 $widget-width;
+      height: $widget-height;
+    }
+
+    &:after { // Placeholder to fill free space in last row
+      content: '';
+      display: flex;
+      flex: 1 1 0;
+    }
+  }
+}
+
+/* =============================================================================
+    App boards
+============================================================================= */
+
+.goal-list,
+.task-list {
+  > header {
+    color: white;
 
     .history {
       height: 4.5rem;
     }
-
-
-  }
-
-  &:after { // Stub for list line
-    content: '';
-    display: flex;
-    flex: 1 1 0;
   }
 }
+
+@media (min-width: $screen-width) {
+  .board .box {
+    > .main {
+      max-height: $line-height*2;
+      white-space: normal;
+    }
+
+    > .secondary {
+      display: flex;
+      flex-flow: row wrap;
+
+      .tags {
+        flex: 1 1 100%;
+      }
+    }
+
+    .goal-progress{
+      // border: transparentize(#00B5EC, 0.7) 0.5rem solid;
+      // border: transparentize(#000, 0.95) 0.5rem solid;
+      // flex: 0 0 4.5rem;
+      // width: 4.5rem;
+      // height: 4.5rem;
+      // border-radius: 50%;
+    }
+  }
+}
+
+/* =============================================================================
+    Helpers and components
+============================================================================= */
 
 .justify-end {
   justify-content: flex-end;
@@ -105,97 +193,12 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
   color: white !important;
 }
 
-.row {
-  display: flex;
-  flex-flow: row nowrap;
-  align-content: stretch;
-  align-items: stretch;
-  padding: 0 1rem;
-}
-
-.column {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-}
-
-.column.date {
-  align-items: center;
-  align-content: center;
-  flex: 0 0 auto;
-  padding: 0 2rem;
-  position: relative;
-
-  .prev-day, .next-day {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1.5rem;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.6;
-    cursor: pointer;
-    transition: opacity .3s ease;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .prev-day {
-    left: 0;
-  }
-
-  .next-day {
-    right: 0;
-  }
-
-  .weekday, .month {
-    font-size: 0.875rem;
-    line-height: 1em;
-  }
-
-  .weekday {
-    padding-bottom: 0.625rem;
-  }
-
-  .month {
-    padding-top: 0.625rem;
-  }
-
-  .day {
-    font-family: "Roboto Condensed", "Open Sans Condensed", "Helvetica Condensed", "Arial Narrow", sans-serif;
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1em;
-    transform: scaleY(1.125);
-  }
-}
-
 .column.statistics {
   flex: 0 0 auto;
 }
 
 /* Row layout */
 .box.goal {
-  display: inline-flex;
-  flex-direction: column;
-  align-content: stretch;
-  align-items: stretch;
-  background: white;
-
-  padding: calc(.75rem - #{$board-space / 2}) calc(1rem - #{$board-space / 2});
-  border-radius: 1px;
-  border: 2px solid transparent;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-  height: $line-height * 4 - $board-space;
-
   > .main {
     font-size: 1rem;
     line-height: $line-height;
@@ -262,72 +265,4 @@ $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height
       background: transparentize(red, 0.5);
     }
   }
-}
-
-/******************
-  For wide screens - make cards instead rows
-*******************/
-
-@function board-width($cols, $width, $margin) {
-  // returns board width for given element width and margin and columns
-  @return $cols * ($width + $margin) + $margin;
-}
-
-@mixin goal-board($elem-width, $min-cols, $max-cols) {
-  // Generate media quries for board with given columns
-  @for $i from $min-cols to ($max-cols + 1) {
-    $max-width: board-width($i, $elem-width, $board-space);
-    $screen-width: $max-width + $min-board-margin * 2;
-    @media (min-width: $screen-width) {
-      max-width: $max-width;
-    }
-  }
-}
-
-$max-width: board-width(2, $widget-width, $board-space);
-$screen-width: $max-width + $min-board-margin * 2;
-
-@media (min-width: $screen-width) {
-  $page-header-overlap: ($widget-height + $board-space + $board-space / 2) + 7 * $line-height; // one widgets row + header
-
-  .box.page > header {
-    padding-bottom: $page-header-overlap + $line-height*2;
-  }
-
-  .board.goal-list {
-    flex-flow: row wrap;
-    margin: -$page-header-overlap auto $line-height;
-  }
-
-  .box.goal {
-    flex: 0 0 $widget-width;
-    height: $widget-height;
-
-    > .main {
-      max-height: $line-height*2;
-      white-space: normal;
-    }
-
-    > .secondary {
-      display: flex;
-      flex-flow: row wrap;
-
-      .tags {
-        flex: 1 1 100%;
-      }
-    }
-
-    .goal-progress{
-      // border: transparentize(#00B5EC, 0.7) 0.5rem solid;
-      // border: transparentize(#000, 0.95) 0.5rem solid;
-      // flex: 0 0 4.5rem;
-      // width: 4.5rem;
-      // height: 4.5rem;
-      // border-radius: 50%;
-    }
-  }
-}
-
-.board.goal-list {
-  @include goal-board($widget-width, 2, 4);
 }

@@ -26,8 +26,8 @@ body {
   > header {
     padding: $line-height 1rem;
     padding-top: 3*$line-height;
-    background-color: #00B5EC;
-    color: white;
+    background-color: white;
+    color: black;
 
     h1, h2, h3, h4 {
       text-align: center;
@@ -70,6 +70,17 @@ h4 {
 h5 {
   font-size: 1.125rem;
   line-height: 1.5rem;
+}
+
+.box.page.goals > header {
+  background-color: #00B5EC;
+  color: white;
+}
+
+.box.page.tasks > header {
+  background-color: #FFA000;
+  background-color: #404D5E;
+  color: white;
 }
 
 @import "page-nav.scss";

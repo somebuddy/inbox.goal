@@ -113,3 +113,46 @@ $logo-color: transparentize(white, 0.2);
     opacity: 1;
   }
 }
+
+/* Task app icon */
+
+.logo-tasks {
+  @extend %logo;
+  margin-right: 1.25rem;
+  width: 1.25rem;
+
+  &, &:before, &:after {
+    height: 0.25rem;
+    background: $logo-color;
+    transition: width 1s ease, margin 1s ease;
+  }
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  &:before {
+    top: -.5rem;
+    width: .75rem;
+  }
+
+  &:after {
+    bottom: -.5rem;
+    width: 0.25rem;
+  }
+
+  .brand:hover > &, &:hover {
+    margin-right: 2.25rem;
+    width: 0.25rem;
+
+    &:before {
+      width: 1rem;
+    }
+
+    &:after {
+      width: 1.5rem;
+    }
+  }
+}
