@@ -31,7 +31,7 @@ $(function () {
     function getRandomTask () {
       var task = {
         title: sample(verb) + ' ' + sample(adj) + ' ' + sample(noun),
-        dateTo: moment(new Date()).add(randInt(43200), 'minutes'),
+        dateTo: moment(new Date()).add(randInt(43200) - 20000, 'minutes'),
         tags: getTags(),
         // state: sample(states),
         value: {
@@ -43,8 +43,7 @@ $(function () {
       return task;
     }
 
-    function buildTagsElem(lst) {
-      var el = $('<div class="tags"></div>');
+    function buildTagsElem(el, lst) {
       for (var t in lst) {
         var tag = $('<div class="tag"></div>').html(lst[t]);
         el.append(tag);
@@ -52,59 +51,47 @@ $(function () {
       return el;
     }
 
-    function buildToolsBar() {
-      // Actions element
-      var toolsElem = $('<div class="toolbar"><div class="button check"></div><div class="button timer"></div></div>');
-      return toolsElem;
+    function hasChild (task) {
+      return task.value && task.value.total > 1;
     }
 
-    function buildTaskProgressBar (task) {
-      var el = $('<div class="task-state"></div>');
+    function isDone (task) {
+      return task.state == 'done' || (task.value && task.value.total == task.value.current);
+    }
 
-      if (task.value && task.value.total > 1) {
-        el.addClass('has-child');
-      }
+    function isOverdue (task) {
+      return moment(task.dateTo).isBefore(new Date());
+    }
 
-      if (task == 'done' || (task.value && task.value.total == task.value.current)) {
-        el.addClass('done');
-      }
+    function getTaskClasses (task) {
+      var result = hasChild(task) ? 'has-child ' : '';
+      result += isDone(task) ? 'done' : (isOverdue(task) ? 'overdue' : '');
+      return result;
+    }
 
+    function buildTaskProgressBar (el, task) {
       // State and date element
-      var valElem = $('<div class="due-date"></div>');
-      var val = task.state == 'done' ? '<strong>Done</strong>' : '<strong>due</strong> <date>' + task.dateTo.format('llll') + '</date>';
-      valElem.html(val);
-      el.append(valElem);
+      if (task.value) {
+        el.find('.done-value').html(task.value.current + ' / ' + task.value.total);
+      }
+      el.find('.due-date').html('<strong>due</strong> <date>' + task.dateTo.format('llll') + '</date>');
 
       if (task.value && task.value.total) {
         var progress = (task.value.current || 0) * 100 / task.value.total;
-
-        if (task.value.total > 1) {
-          valElem = $('<div class="done-value"></div>');
-          valElem.html(task.value.current + ' / ' + task.value.total);
-          el.append(valElem);
-        }
-
-        var line = $('<div class="line"></div>').css('width', progress + '%');
-        if (task.value.current == task.value.total) {
-          valElem = $('<div class="done-message"></div>');
-          valElem.html('<strong>Done</strong>')
-          el.append(valElem);
-        }
-        el.append(line);
+        el.find('.line').css('width', progress + '%');
       }
 
-      if (task != 'done' && (!task.value || task.value.total <= 1)) {
-        $(el).append(buildToolsBar());
-      }
       return el;
     }
 
     function buildTaskWidget (task) {
-      var tmplt = $('#task-widget-template > article').clone();
-      $(tmplt).find('.main').html(task.title);
-      $(tmplt).find('.secondary.tags').append(buildTagsElem(task.tags));
-      $(tmplt).find('.task-state').html(buildTaskProgressBar(task));
-      $('.board.task-list' ).append(tmplt);
+      var tmplt = $('#task-widget-template').html();
+      var el = $(tmplt);
+      el.addClass(getTaskClasses(task));
+      $(el).find('.main .title').html(task.title);
+      buildTagsElem($(el).find('.secondary.tags'), task.tags);
+      buildTaskProgressBar($(el).find('.task-state'), task);
+      $('.board.task-list' ).append(el);
     }
 
     // Some predefined tasks

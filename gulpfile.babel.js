@@ -93,8 +93,8 @@ gulp.task('serve', ['styles', 'fonts'], () => {
   browserSync({
     notify: false,
     // port: 9000,
-    port: process.env.PORT,
-    host: process.env.IP,
+    port: process.env.PORT || 9000,
+    host: process.env.IP || '0.0.0.0',
     server: {
       baseDir: ['.tmp', 'app'],
       routes: {

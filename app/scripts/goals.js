@@ -58,8 +58,8 @@ $(function () {
     }
 
     function buildGoalWidget (goal) {
-      var el = $('<article><div class="main"></div><div class="secondary"></div><div class="goal-progress"></div></article>').addClass('box goal');
-      $(el).find('.main').html(goal.title);
+      var el = $('<article><div class="main"><div class="title"></div></div><div class="secondary"></div><div class="goal-progress"></div></article>').addClass('box goal');
+      $(el).find('.main .title').html(goal.title);
       var sec = $('<div class="value date-from"></div>').html(goal.dateFrom.format('ll'));
       $(el).find('.secondary').append(sec);
       sec = $('<div class="value date-to"></div>').html(goal.dateTo.format('ll'));

@@ -5,7 +5,8 @@
     "modernizr": "~2.8.1",
     "jquery-knob": "~1.2.13",
     "moment": "~2.11.0",
-    "bootstrap-css": "~3.3.4"
+    "bootstrap-css": "~3.3.4",
+    "jquery": "~2.2.0"
   },
   "overrides": {
     "bootstrap-sass": {

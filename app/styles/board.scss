@@ -7,7 +7,7 @@ $widget-width: 22.5rem;
 $widget-height: 10rem;
 
 $min-board-margin: 1rem;
-$board-space: .125rem;
+$board-space: .5rem;
 
 $page-header-overlap: ($line-height * 4 * 2 + $board-space * 0.5) + $line-height * 7; // 2 widgets + header
 
@@ -116,8 +116,12 @@ $screen-width: $max-width + $min-board-margin * 2;
 @media (min-width: $screen-width) {
   .board .box {
     > .main {
-      max-height: $line-height*2;
-      white-space: normal;
+      .title {
+        white-space: normal;
+        height: $line-height*2;
+        overflow-y: hidden;
+        overflow-x: visible;
+      }
     }
 
     > .secondary {
@@ -195,6 +199,17 @@ $screen-width: $max-width + $min-board-margin * 2;
 
 .column.statistics {
   flex: 0 0 auto;
+}
+
+.box.task {
+  &.done {
+    background: lighten(black, 95%);
+    box-shadow: none !important;
+
+    &:hover {
+      border-color: lighten(black, 90%);
+    }
+  }
 }
 
 /* Row layout */

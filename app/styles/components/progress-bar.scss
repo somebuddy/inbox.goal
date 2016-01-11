@@ -18,7 +18,8 @@
 
 .task-state,
 .task-progress {
-  @include absolute(null, -2px, -2px, -2px);
+  @include absolute(null, -2px, 0, -2px);
+  @include absolute(null, 0, 0, 0);
   padding-bottom: 0.3125rem;
 
   display: flex;
@@ -113,7 +114,7 @@
     background: transparentize(#FFA000, 0.1);
   }
 
-  &.has-child {
+  .task.has-child & {
     > .done-value,
     > .line {
       display: block;
@@ -124,7 +125,7 @@
     }
   }
 
-  &.done {
+  .task.done & {
     > .line {
       border-radius: 0 0 2px 2px;
       background: rgba(0,0,0,.5);
@@ -139,7 +140,16 @@
     }
   }
 
-  &.overdure {
+  .task.overdue:not(.done) & {
+    > .line {
+      background: #ED4743;
+    }
+
+    > .due-date,
+    > .done-value {
+      color: darkred;
+      color: red;
+    }
 
   }
 }
