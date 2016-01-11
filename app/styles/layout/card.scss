@@ -1,10 +1,12 @@
 @mixin card {
+  font-family: walkway, 'Roboto', Helvetica, sans-serif;
   display: inline-flex;
   flex-direction: column;
   align-content: stretch;
   align-items: stretch;
+  position: relative;
 
-  border-radius: 1px;
+  border-radius: 2px;
   border: 2px solid transparent;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);

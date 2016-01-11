@@ -32,8 +32,12 @@ $(function () {
         title: sample(verb) + ' ' + sample(adj) + ' ' + sample(noun),
         dateTo: moment(new Date()).add(randInt(43200), 'minutes'),
         tags: getTags(),
-        state: sample(states)
+        // state: sample(states),
+        value: {
+          total: randInt(100),
+        }
       };
+      task.value.current = randInt(task.value.total);
       return task;
     }
 
@@ -46,22 +50,57 @@ $(function () {
       return el;
     }
 
-    function buildProgressLine(value, cls) {
-      var el = $('<div class="line"></div>').css('width', value + '%');
-      el.addClass(cls);
+    function buildToolsBar() {
+      // Actions element
+      var toolsElem = $('<div class="toolbar"><div class="button check"></div><div class="button timer"></div></div>');
+      return toolsElem;
+    }
+
+    function buildTaskProgressBar (task) {
+      var el = $('<div class="task-state"></div>');
+
+      if (task.value && task.value.total > 1) {
+        el.addClass('has-child');
+      }
+
+      if (task == 'done' || (task.value && task.value.total == task.value.current)) {
+        el.addClass('done');
+      }
+
+      // State and date element
+      var valElem = $('<div class="due-date"></div>');
+      var val = task.state == 'done' ? '<strong>Done</strong>' : '<strong>due</strong> <date>' + task.dateTo.format('llll') + '</date>';
+      valElem.html(val);
+      el.append(valElem);
+
+      if (task.value && task.value.total) {
+        var progress = (task.value.current || 0) * 100 / task.value.total;
+
+        if (task.value.total > 1) {
+          valElem = $('<div class="done-value"></div>');
+          valElem.html(task.value.current + ' / ' + task.value.total);
+          el.append(valElem);
+        }
+
+        var line = $('<div class="line"></div>').css('width', progress + '%');
+        if (task.value.current == task.value.total) {
+          valElem.html('<strong>Done</strong>')
+          line.addClass('done');
+        }
+        el.append(line);
+      }
+
+      if (task != 'done' && (!task.value || task.value.total <= 1)) {
+        $(el).append(buildToolsBar());
+      }
       return el;
     }
 
     function buildTaskWidget (task) {
-      var el = $('<article><div class="main"></div><div class="secondary"></div><div class="task-progress"></div></article>').addClass('box task');
+      var el = $('<article><div class="main"></div><div class="secondary"></div></article>').addClass('box task');
       $(el).find('.main').html(task.title);
-      var sec = $('<div class="value date-to"></div>').html(task.dateTo.format('llll'));
-      $(el).find('.secondary').append(sec);
       $(el).find('.secondary').append(buildTagsElem(task.tags));
-      if (task.value && task.value.total) {
-        var pl = buildProgressLine(task.value, 'value');
-        $(el).find('.task-progress').append(pl);
-      }
+      $(el).append(buildTaskProgressBar(task));
       $('.board.task-list' ).append(el);
     }
 
@@ -70,11 +109,7 @@ $(function () {
       title: 'Coursera "Responsive Web Design". Quiz: Realising design principles in code summary quiz',
       dateTo: moment('10.01.2016 11:59 PM -0800', 'DD.MM.YYYY HH:mm A Z'),
       tags: ['Delevopment', 'Study', 'Coursera'],
-      state: 'done',
-      value: {
-        current: 1,
-        total: 1
-      }
+      state: 'done'
     }, {
       title: 'Coursera "Responsive Web Design". Assignment: Design A Website',
       dateTo: moment('10.01.2016 11:59 PM -0800', 'DD.MM.YYYY HH:mm A Z'),

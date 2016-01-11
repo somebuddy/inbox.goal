@@ -1,0 +1,145 @@
+/* Task state widget component
+   - task value: done/total - for complex tasks
+   - task 'mark as done' action
+
+   - task due time
+   - task 'done' message
+
+   - task progress bar
+*/
+
+@mixin absolute($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+.task-state,
+.task-progress {
+  @include absolute(null, -2px, -2px, -2px);
+  padding-bottom: 0.3125rem;
+
+  display: flex;
+  align-content: flex-end;
+  align-items: flex-end;
+
+  > .done-value,
+  > .due-date,
+  > .done-message {
+    flex: 0 0 auto;
+    font-size: .8125rem;
+    line-height: 1em;
+    padding: .375rem 1rem .5rem;
+    opacity: 0.8;
+    color: #111;
+  }
+
+  > .done-value {
+    display: none;
+
+    order: -1;
+    margin-right: auto;
+    font-size: 1rem;
+    padding: .3125rem 1rem .375rem;
+  }
+
+  > .toolbar {
+    flex: 0 0 auto;
+    display: flex;
+    margin-right: auto;
+    padding: 0 1rem .1875rem;
+
+    > .button {
+      height: 1.5rem;
+      width: 1.5rem;
+      margin-right: .5rem;
+      border-radius: 50%;
+      font-family: 'Glyphicons Halflings';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    > .button.check {
+      font-size: .75rem;
+      background: rgba(0,0,0,.1);
+      color: rgba(0,0,0,.2);
+
+      &:hover {
+        background: rgba(0,0,0,.4);
+        color: white;
+      }
+
+      &:before {
+        content: "\e013";
+      }
+    }
+
+    > .button.timer {
+      font-size: 1.5rem;
+      color: rgba(0,0,0,.2);
+
+      &:hover {
+        color: rgba(0,0,0,.6);
+      }
+
+      &:before {
+        content: "\e023";
+      }
+    }
+  }
+
+  > .due-date,
+  > .done-message {
+    order: 999;
+    margin-left: auto;
+  }
+
+  > .done-message {
+    display: none;
+  }
+
+  > .line {
+    display: none;
+
+    @include absolute(null, null, 0, 0);
+    height: 0.3125rem;
+    border-radius: 0 4px 4px 2px;
+    background: transparentize(#FFA000, 0.1);
+  }
+
+  &.has-child {
+    > .done-value,
+    > .line {
+      display: block;
+    }
+
+    > .toolbar {
+      display: none;
+    }
+  }
+
+  &.done {
+    > .line {
+      border-radius: 0 0 2px 2px;
+      background: rgba(0,0,0,.5);
+    }
+
+    > .due-date {
+      display: none;
+    }
+
+    > .done-message {
+      display: block;
+    }
+  }
+
+  &.overdure {
+
+  }
+}
