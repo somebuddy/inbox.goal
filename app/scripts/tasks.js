@@ -1,3 +1,4 @@
+/*global $:false, moment:false */
 'use strict';
 
 $(function () {
@@ -34,10 +35,11 @@ $(function () {
         tags: getTags(),
         // state: sample(states),
         value: {
-          total: randInt(100),
+          total: randInt(10) + 1,
         }
       };
       task.value.current = randInt(task.value.total);
+      console.log(task);
       return task;
     }
 
@@ -84,8 +86,9 @@ $(function () {
 
         var line = $('<div class="line"></div>').css('width', progress + '%');
         if (task.value.current == task.value.total) {
+          valElem = $('<div class="done-message"></div>');
           valElem.html('<strong>Done</strong>')
-          line.addClass('done');
+          el.append(valElem);
         }
         el.append(line);
       }
@@ -97,11 +100,11 @@ $(function () {
     }
 
     function buildTaskWidget (task) {
-      var el = $('<article><div class="main"></div><div class="secondary"></div></article>').addClass('box task');
-      $(el).find('.main').html(task.title);
-      $(el).find('.secondary').append(buildTagsElem(task.tags));
-      $(el).append(buildTaskProgressBar(task));
-      $('.board.task-list' ).append(el);
+      var tmplt = $('#task-widget-template > article').clone();
+      $(tmplt).find('.main').html(task.title);
+      $(tmplt).find('.secondary.tags').append(buildTagsElem(task.tags));
+      $(tmplt).find('.task-state').html(buildTaskProgressBar(task));
+      $('.board.task-list' ).append(tmplt);
     }
 
     // Some predefined tasks
