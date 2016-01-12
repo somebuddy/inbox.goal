@@ -108,8 +108,8 @@
       </div>
     </div>
 
-    <script id="task-widget-template" type="text/template">
-      <article class="box task">
+    <script id="box-widget-template" type="text/template">
+      <article class="box">
         <header class="main">
           <div class="title"></div>
         </header>
@@ -118,17 +118,21 @@
         </div>
         <div class="row secondary parents"></div>
         <div class="row secondary tags"></div>
-        <div class="task-state">
-          <div class="done-value"></div>
-          <div class="toolbar">
-            <div class="button check"></div>
-            <div class="button timer"></div>
-          </div>
-          <div class="due-date"></div>
-          <div class="done-message"><strong>Done</strong></div>
-          <div class="line"></div>
-        </div>
+        <div class="state"></div>
       </article>
+    </script>
+
+    <script id="task-state-template" type="text/template">
+      <div class="state">
+        <div class="done-value"></div>
+        <div class="toolbar">
+          <div class="button check"></div>
+          <div class="button timer"></div>
+        </div>
+        <div class="due-date"></div>
+        <div class="done-message"><strong>Done</strong></div>
+        <div class="line"></div>
+      </div>
     </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

@@ -16,16 +16,19 @@
   left: $left;
 }
 
-.task-state,
-.task-progress {
+.box .state {
+  display: flex;
+}
+
+/* Components */
+.task .state {
   @include absolute(null, -2px, 0, -2px);
   @include absolute(null, 0, 0, 0);
   padding-bottom: 0.3125rem;
 
-  display: flex;
   align-content: flex-end;
   align-items: flex-end;
-
+  
   > .done-value,
   > .due-date,
   > .done-message {
@@ -38,14 +41,12 @@
   }
 
   > .done-value {
-    display: none;
-
     order: -1;
     margin-right: auto;
     font-size: 1rem;
     padding: .3125rem 1rem .375rem;
   }
-
+  
   > .toolbar {
     flex: 0 0 auto;
     display: flex;
@@ -100,26 +101,38 @@
     order: 999;
     margin-left: auto;
   }
-
-  > .done-message {
-    display: none;
-  }
-
+  
   > .line {
-    display: none;
-
     @include absolute(null, null, 0, 0);
     height: 0.3125rem;
     border-radius: 0 4px 4px 2px;
     background: transparentize(#FFA000, 0.1);
   }
+}
 
+/* States */
+
+.state {
+  .task & {
+    > .done-value {
+      display: none;
+    }
+  
+    > .done-message {
+      display: none;
+    }
+  
+    > .line {
+      display: none;
+    }
+  }
+  
   .task.has-child & {
     > .done-value,
     > .line {
       display: block;
     }
-
+  
     > .toolbar {
       display: none;
     }
@@ -150,6 +163,5 @@
       color: darkred;
       color: red;
     }
-
   }
 }

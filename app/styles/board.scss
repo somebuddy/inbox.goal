@@ -205,8 +205,10 @@ $screen-width: $max-width + $min-board-margin * 2;
   &.done {
     background: lighten(black, 95%);
     box-shadow: none !important;
+    opacity: 0.5;
 
     &:hover {
+      opacity: 1;
       border-color: lighten(black, 90%);
     }
   }
@@ -214,47 +216,68 @@ $screen-width: $max-width + $min-board-margin * 2;
 
 /* Row layout */
 .box.goal {
-  > .main {
-    font-size: 1rem;
-    line-height: $line-height;
-    min-height: 1.5rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  > .secondary {
+  > .state {
+    flex: 0 0 auto;
     font-size: .875rem;
     line-height: $line-height;
     white-space: nowrap;
     min-height: 1.5rem;
-    opacity: 0.6;
+    margin-top: .75rem;
     display: flex;
     overflow: hidden;
+    position: relative;
+    flex-flow: row wrap;
 
-    > * {
-      margin-right: 1rem;
-      white-space: nowrap;
+    > .value,
+    > .goal-progress,
+    > .time {
+      flex: 1 1 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      font-weight: 600;
     }
 
-    .value.date-from,
-    .value.date-to {
-      flex: 0 0 auto;
-    }
+    > .value {
+      font-size: .875rem;
+      line-height: .875rem;
+      opacity: 0.6;
 
-    .value.date-from {
-      margin-right: .5rem;
-
-      &:after {
-        content: '\2014';
-        margin-left: .5rem;
+      > .total {
+        margin-left: auto;
       }
+
+      > .init {
+        margin-right: auto;
+      }
+    }
+
+    > .time {
+      font-size: 0.75rem;
+      line-height: 0.75rem;
+      opacity: 0.6;
+
+      .date-from,
+      .date-to {
+        flex: 0 0 auto;
+      }
+
+      .date-from {
+        margin-right: auto;
+      }
+
+      .date-to {
+        margin-left: auto;
+      }
+    }
+
+    .goal-progress {
+      flex: 1 1 100%;
     }
   }
 
-  > .goal-progress {
-    margin: 1.125rem 0 0;
-    flex: 0 0 0.375rem;
+  .goal-progress {
+    margin: 0.125rem 0;
+    height: 0.375rem;
     background-color: transparentize(#000, 0.95);
     position: relative;
 
@@ -267,14 +290,14 @@ $screen-width: $max-width + $min-board-margin * 2;
     }
 
     > .line.value {
-      bottom: 0;
+      top: 0;
       height: .25rem;
       width: 70%;
       background: transparentize(#00B5EC, 0.2);
     }
 
     > .line.time {
-      top: 0;
+      bottom: 0;
       height: .125rem;
       width: 45%;
       background: transparentize(red, 0.5);
