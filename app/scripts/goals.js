@@ -77,8 +77,8 @@ $(function () {
     function calcGoalStat (goal) {
       goal.value.current = goal.value.current || goal.value.start;
       goal.value.total = (goal.value.end - goal.value.start) || 1;
-      goal.timeProgress = moment().diff(goal.dateFrom) / goal.dateTo.diff(goal.dateFrom);
-      goal.valueProgress = goal.value ? (goal.value.current - goal.value.start) / (goal.value.end - goal.value.start) : 0;
+      goal.timeProgress = Math.min(moment().diff(goal.dateFrom) / goal.dateTo.diff(goal.dateFrom), 1);
+      goal.valueProgress = goal.value ? Math.min(1, (goal.value.current - goal.value.start) / (goal.value.end - goal.value.start)) : 0;
     }
 
     function getRandomGoal () {
@@ -92,10 +92,9 @@ $(function () {
       return goal;
     }
 
-    function buildProgressLine(value, cls) {
-      var el = $('<div class="line"></div>').css('width', value * 100 + '%');
-      el.addClass(cls);
-      return el;
+    function setProgressLine(elem, value, cls) {
+      $(elem).css('width', value * 100 + '%');
+      $(elem).addClass(cls);
     }
 
     function addGoalStateWidget(widget, goal) {
@@ -108,10 +107,8 @@ $(function () {
       $(el).find('.date-from').html(goal.dateFrom.format('ll'));
       $(el).find('.date-to').html(goal.dateTo.format('ll'));
 
-      var pl = buildProgressLine(goal.timeProgress, 'time');
-      $(el).find('.goal-progress').append(pl);
-      pl = buildProgressLine(goal.valueProgress, 'value');
-      $(el).find('.goal-progress').append(pl);
+      setProgressLine($(el).find('.main .line'), goal.valueProgress, 'value');
+      setProgressLine($(el).find('.secondary .line'), goal.timeProgress, 'time');
 
       $(widget).html(el.html());
     }

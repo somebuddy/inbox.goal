@@ -16,64 +16,107 @@
   left: $left;
 }
 
-.box .state {
+@mixin flex-centered() {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-/* Components */
-.task .state {
-  @include absolute(null, -2px, 0, -2px);
-  @include absolute(null, 0, 0, 0);
-  padding-bottom: 0.3125rem;
+.box .state {
+  // components: main and secondary line with 3 lables (left,right,center) and line value label
+  flex: 0 0 auto;
+  margin-top: .5rem;
+  position: relative;
 
+  display: flex;
+  flex-flow: row wrap;
   align-content: flex-end;
   align-items: flex-end;
-  
-  > .done-value,
-  > .due-date,
-  > .done-message {
-    flex: 0 0 auto;
-    font-size: .8125rem;
-    line-height: 1em;
-    padding: .375rem 1rem .5rem;
-    opacity: 0.8;
-    color: #111;
+
+  > .main, > .secondary {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    > .left {
+      margin-right: auto;
+      order: -1;
+    }
+
+    > .right {
+      margin-left: auto;
+      order: 999;
+    }
+
+    > .center {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    > .line {
+      @include absolute(null, 0, null, 0);
+      border-radius: 0 4px 4px 0;
+    }
   }
 
-  > .done-value {
-    order: -1;
-    margin-right: auto;
-    font-size: 1rem;
-    padding: .3125rem 1rem .375rem;
+  > .main {
+    font-size: .875rem;
+    line-height: 1rem;
+    padding-bottom: .5rem;
+    opacity: 0.8;
+
+    > .line {
+      height: .3125rem;
+      bottom: 0;
+      background: green;
+    }
   }
-  
-  > .toolbar {
+
+  > .secondary {
+    font-size: .75rem;
+    line-height: .75rem;
+    padding-top: .25rem;
+    opacity: 0.6;
+
+    > .line {
+      height: 0.125rem;
+      top: 0;
+      background: yellow;
+    }
+  }
+
+  .toolbar {
     flex: 0 0 auto;
     display: flex;
     margin-right: auto;
-    padding: 0 1rem .1875rem;
+    padding: 0;
 
     > .button {
+      @include flex-centered;
       height: 1.5rem;
       width: 1.5rem;
       margin-right: .5rem;
       border-radius: 50%;
       font-family: 'Glyphicons Halflings';
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
       cursor: pointer;
+      opacity: 0.5;
       transition: all .3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     > .button.check {
       font-size: .75rem;
-      background: rgba(0,0,0,.1);
-      color: rgba(0,0,0,.2);
+      background: rgba(0,0,0,.4);
+      color: rgba(0,0,0,.8);
 
       &:hover {
-        background: rgba(0,0,0,.4);
+        background: rgba(0,0,0,.6);
         color: white;
       }
 
@@ -84,10 +127,10 @@
 
     > .button.timer {
       font-size: 1.5rem;
-      color: rgba(0,0,0,.2);
+      color: rgba(0,0,0,.6);
 
       &:hover {
-        color: rgba(0,0,0,.6);
+        color: rgba(0,0,0,.8);
       }
 
       &:before {
@@ -95,73 +138,101 @@
       }
     }
   }
+}
 
-  > .due-date,
-  > .done-message {
-    order: 999;
-    margin-left: auto;
+/* ==================
+  Task widget styles
+===================== */
+.task .state {
+  margin: .75rem -1rem -.75rem;
+  height: 2.75rem;
+
+  .main {
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    .line {
+      background: transparentize(#FFA000, 0.1);
+      background: transparentize(#00B5EC, 0.2);
+    }
   }
-  
-  > .line {
-    @include absolute(null, null, 0, 0);
-    height: 0.3125rem;
-    border-radius: 0 4px 4px 2px;
-    background: transparentize(#FFA000, 0.1);
+
+  .done-value {
+    font-size: 1rem;
   }
 }
 
-/* States */
-
 .state {
   .task & {
-    > .done-value {
+    .done-value {
       display: none;
     }
-  
-    > .done-message {
+
+    .done-message {
       display: none;
     }
-  
-    > .line {
+
+    .line {
       display: none;
     }
   }
-  
+
   .task.has-child & {
-    > .done-value,
-    > .line {
+    .done-value,
+    .line {
       display: block;
     }
-  
-    > .toolbar {
+
+    .toolbar {
       display: none;
     }
   }
 
   .task.done & {
-    > .line {
+    .main .line {
       border-radius: 0 0 2px 2px;
-      background: rgba(0,0,0,.5);
+      background: lighten(black, 70%);
     }
 
-    > .due-date {
+    .due-date {
       display: none;
     }
 
-    > .done-message {
+    .done-message {
       display: block;
     }
   }
 
   .task.overdue:not(.done) & {
-    > .line {
+    .line {
       background: #ED4743;
     }
 
-    > .due-date,
-    > .done-value {
+    .due-date,
+    .done-value {
       color: darkred;
       color: red;
     }
+  }
+}
+
+/* ==================
+  Goal widget styles
+===================== */
+.box.goal .state {
+  .toolbar {
+    display: none;
+  }
+
+  .value, .time {
+    font-weight: 600;
+  }
+
+  .value .line {
+    background: transparentize(#00B5EC, 0.2);
+  }
+
+  .time .line {
+    background: transparentize(red, 0.5);
   }
 }

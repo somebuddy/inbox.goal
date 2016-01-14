@@ -124,22 +124,19 @@
 
     <script id="goal-state-template" type="text/template">
       <div class="state">
-        <div class="value">
-          <div class="init"></div>
-          <div class="percent"></div>
-          <div class="done"></div>
+        <div class="main value">
+          <div class="toolbar left">
+            <div class="button check"></div>
+            <div class="button timer"></div>
+          </div>
+          <div class="done right"></div>
+          <div class="line"></div>
         </div>
 
-        <div class="toolbar">
-          <div class="button check"></div>
-          <div class="button timer"></div>
-        </div>
-
-        <div class="goal-progress"></div>
-
-        <div class="time">
-          <div class="date-from"></div>
-          <div class="date-to"></div>
+        <div class="secondary time">
+          <div class="left date-from"></div>
+          <div class="right date-to"></div>
+          <div class="line"></div>
         </div>
       </div>
     </script>

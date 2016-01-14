@@ -55,20 +55,6 @@
       margin-right: 1rem;
       white-space: nowrap;
     }
-
-    .value.date-from,
-    .value.date-to {
-      flex: 0 0 auto;
-    }
-
-    .value.date-from {
-      margin-right: .5rem;
-
-      &:after {
-        content: '\2014';
-        margin-left: .5rem;
-      }
-    }
   }
 
   transition: all .5s ease;
@@ -78,5 +64,31 @@
     border-radius: 5px;
     border-color: transparentize(#008EBF, .4);
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+}
+
+
+/* ==================
+  Widget modifications
+===================== */
+
+/* ==================
+  Goal widget styles
+===================== */
+
+/* ==================
+  Task widget styles
+===================== */
+
+.box.task {
+  &.done {
+    background: lighten(black, 95%);
+    box-shadow: none !important;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+      border-color: lighten(black, 90%);
+    }
   }
 }
